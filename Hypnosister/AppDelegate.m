@@ -7,8 +7,13 @@
 //
 
 #import "AppDelegate.h"
+#import "BNRHypnosisView.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
+// You can add a property inside a class extension
+@property(strong, atomic)UIColor *circleColor;
+
 
 @end
 
@@ -17,6 +22,30 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
+    
+    ViewController *vc = [[ViewController alloc]init];
+    self.window.rootViewController = [[UINavigationController alloc]initWithRootViewController: vc];
+    [self.window makeKeyAndVisible];
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    // Red BOX VIEW
+    //CGRect firstFrame = CGRectMake(160, 240, 100, 150);
+    CGRect firstFrame = self.window.bounds;
+    BNRHypnosisView *firstView = [[BNRHypnosisView alloc]initWithFrame:firstFrame];
+    //firstView.backgroundColor = [UIColor redColor];
+    [self.window addSubview:firstView];
+    
+    // Blue BOX VIEW
+/*
+    CGRect secondFrame = CGRectMake(20, 30, 50, 50);
+    BNRHypnosisView *secondView = [[BNRHypnosisView alloc]initWithFrame:secondFrame];
+    secondView.backgroundColor = [UIColor blueColor];
+    [firstView addSubview:secondView];*/
+
+    
     return YES;
 }
 
