@@ -178,12 +178,29 @@
     //CGContextRestoreGState(currentContext);
     [logoImage drawInRect:imageRect];
 
+}
 
 
+
+//Do something when user touches
+- (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    NSLog(@"%@ was touched",self);
     
-   
+    //Create a random color 0-100
+    float red = (arc4random() % 100) / 100.0;
+    float blue = (arc4random() % 100) / 100.0;
+    float green = (arc4random() % 100) / 100.0;
     
+    UIColor *randomColor = [UIColor colorWithRed:red green:green blue:blue alpha:1];
+    
+    self.circleColor = randomColor;
+    
+    
+}
 
+-(void)setCircleColor:(UIColor *)circleColor{
+    _circleColor = circleColor;
+    [self setNeedsDisplay];
 }
 
 @end

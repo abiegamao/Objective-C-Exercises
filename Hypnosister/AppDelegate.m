@@ -33,10 +33,10 @@
     
     // Red BOX VIEW
     //CGRect firstFrame = CGRectMake(160, 240, 100, 150);
-    CGRect firstFrame = self.window.bounds;
-    BNRHypnosisView *firstView = [[BNRHypnosisView alloc]initWithFrame:firstFrame];
+    //CGRect firstFrame = self.window.bounds;
+    //BNRHypnosisView *firstView = [[BNRHypnosisView alloc]initWithFrame:firstFrame];
     //firstView.backgroundColor = [UIColor redColor];
-    [self.window addSubview:firstView];
+    //[self.window addSubview:firstView];
     
     // Blue BOX VIEW
 /*
@@ -44,6 +44,31 @@
     BNRHypnosisView *secondView = [[BNRHypnosisView alloc]initWithFrame:secondFrame];
     secondView.backgroundColor = [UIColor blueColor];
     [firstView addSubview:secondView];*/
+    
+    // Create CGRects for FRAMES
+    CGRect screenRect = self.window.bounds;
+    CGRect bigRect = screenRect;
+    bigRect.size.width *= 2.0;
+    //bigRect.size.height *= 2.0;
+    
+    //Create a screen-sized scrollview and add it to the window
+    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:screenRect];
+    [self.window addSubview:scrollView];
+    
+    //Create a super-sized BNRHypnosis View and add it to the scroll View
+    //BNRHypnosisView *bnrView = [[BNRHypnosisView alloc]initWithFrame:bigRect];
+    BNRHypnosisView *bnrView = [[BNRHypnosisView alloc]initWithFrame:screenRect];
+    [scrollView addSubview:bnrView];
+    scrollView.pagingEnabled = YES;
+    screenRect.origin.x += screenRect.size.width;
+    
+    BNRHypnosisView *anotherView = [[BNRHypnosisView alloc]initWithFrame:screenRect];
+    [scrollView addSubview:anotherView];
+    
+    
+    
+    //tell the scrollView how big its content-area is
+    scrollView.contentSize = bigRect.size;
 
     
     return YES;
